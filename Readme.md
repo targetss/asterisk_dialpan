@@ -20,7 +20,7 @@
 - ограничения и правила обработки вызовов;
 - вспомогательная логика для операторов.
 
-### Agent-to-Queue Routing
+### Agent-to-Queue-Routing
 Конфигурации распределения операторов по очередям:
 - назначение операторов определенным очередям;
 - динамическая маршрутизация;
@@ -29,7 +29,7 @@
 
 ## Совместимость
 
-Все примеры диалплана протестированы и совместимы с **FreePBX 15**.
+Все примеры диалплана протестированы и совместимы с **FreePBX 14-15**.
 
 Перед использованием рекомендуется протестировать конфигурацию в тестовой среде и адаптировать её под особенности вашей инфраструктуры.
 
@@ -57,7 +57,7 @@ Configurations related to agents:
 - call-handling restrictions and rules;
 - agent-related helper logic.
 
-### Agent-to-Queue Routing
+### Agent-to-Queue-Routing
 Configurations for agent-to-queue assignment:
 - assigning agents to specific queues;
 - dynamic routing;
@@ -66,6 +66,6 @@ Configurations for agent-to-queue assignment:
 
 ## Compatibility
 
-All dialplan examples have been tested and are fully compatible with **FreePBX 15**.
+All dialplan examples have been tested and are fully compatible with **FreePBX 14-15**.
 
 Before deployment, it is recommended to verify the configuration in a test environment and adjust it according to your infrastructure requirements.
