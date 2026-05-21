@@ -1,0 +1,57 @@
+Add to /etc/asterisk/queues_custom.conf:
+[12345]
+announce-frequency=30
+announce-holdtime=yes
+announce-position=yes
+autofill=yes
+autopause=no
+autopausebusy=no
+autopausedelay=0
+autopauseunavail=no
+joinempty=yes
+leavewhenempty=no
+maxlen=0
+memberdelay=0
+min-announce-frequency=30
+penaltymemberslimit=0
+periodic-announce-frequency=45
+queue-callswaiting=queue-callswaiting
+queue-thankyou=queue-thankyou
+queue-thereare=queue-thereare
+queue-youarenext=queue-youarenext
+reportholdtime=no
+retry=5
+ringinuse=no
+servicelevel=15
+strategy=rrmemory
+timeout=10
+timeoutpriority=app
+timeoutrestart=yes
+weight=0
+wrapuptime=2
+context=
+member=Local/line1@tech_line
+member=Local/line2@tech_line
+
+
+Add to /etc/asterisk/extensions_custom.conf
+[custom-tech-limit]
+exten => start,1,NoOp(--- Вход в очередь ---)
+	same => n,Answer()
+	same => n,Queue(12345,tc,,,1800,,,,,)
+	same => n,Hangup()
+
+[tech_line]
+exten => line1,1,Goto(agents,1)
+exten => line2,1,Goto(agents,1)
+exten => agents,1,NoOp(--- Звонок агентам ---)
+	same => n,Dial(SIP/120&SIP/121&SIP/128&SIP/129&SIP/124,30)
+	same => n,Hangup()
+exten => h,1,Hangup()
+
+======================
+If the call passes through an Announcement, the call must be answered there, and the following line can be removed from [custom-tech-limit]:
+
+same => n,Answer()
+
+The number of lines can be adjusted by adding new member entries to the queue and corresponding new extension entries in the [tech_line] context
