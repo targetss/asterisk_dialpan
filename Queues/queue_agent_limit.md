@@ -1,4 +1,5 @@
 Add to /etc/asterisk/queues_custom.conf:
+```asterisk
 [12345]
 announce-frequency=30
 announce-holdtime=yes
@@ -32,9 +33,10 @@ wrapuptime=2
 context=
 member=Local/line1@tech_line
 member=Local/line2@tech_line
+```
 
-
-Add to /etc/asterisk/extensions_custom.conf
+Add to /etc/asterisk/extensions_custom.conf:
+```asterisk
 [custom-tech-limit]
 exten => start,1,NoOp(--- Вход в очередь ---)
 	same => n,Answer()
@@ -48,10 +50,21 @@ exten => agents,1,NoOp(--- Звонок агентам ---)
 	same => n,Dial(SIP/120&SIP/121&SIP/128&SIP/129&SIP/124,30)
 	same => n,Hangup()
 exten => h,1,Hangup()
+```
 
-======================
+---
+**RU**
+
+Если вызов проходит через Announcement, отвечать на вызов необходимо на этом этапе. В таком случае следующую строку можно удалить из контекста [custom-tech-limit]:
+
+> same => n,Answer()
+
+Количество линий можно изменить, добавив новые записи member в очередь и соответствующие записи extension в контекст [tech_line].
+
+**EN**
+
 If the call passes through an Announcement, the call must be answered there, and the following line can be removed from [custom-tech-limit]:
 
-same => n,Answer()
+> same => n,Answer()
 
 The number of lines can be adjusted by adding new member entries to the queue and corresponding new extension entries in the [tech_line] context

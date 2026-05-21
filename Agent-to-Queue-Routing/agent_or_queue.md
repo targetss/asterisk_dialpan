@@ -1,3 +1,4 @@
+```asterisk
 [recall]
 exten => _1XXX,1,NoOp(Звонок распределился на внутренний номер ${recall})
 	same => n,Set(CDR(userfield)=from_1c: ${EXTEN})
@@ -23,3 +24,4 @@ exten => _90[02]X,1,NoOp(Отслеживание звонка на очеред
     same => n,Hangup()
 
 exten => h,1,Hangup()
+```
